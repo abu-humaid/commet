@@ -42,3 +42,6 @@ Route::post('tag-update', 'App\Http\Controllers\TagController@update') -> name('
 Route::get('tag-unpublished/{id}', 'App\Http\Controllers\TagController@unpublishedTag') -> name('tag-unpublished');
 
 Route::get('tag-published/{id}', 'App\Http\Controllers\TagController@publishedTag') -> name('tag-published');
+
+// Post Routes
+Route::resource('post','App\Http\Controllers\PostController');

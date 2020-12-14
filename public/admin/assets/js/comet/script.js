@@ -1,6 +1,10 @@
 (function($){
   $(document).ready(function(){
 
+    // CK Editor
+    CKEDITOR.replace('post_editor');
+
+    // Logout system
     $('a#logout-button').click(function(e){
       e.preventDefault();
 
@@ -8,6 +12,8 @@
 
 
     });
+
+    // Category Edit 
 
     $(document).on('click','a#category_edit', function(e){
       e.preventDefault();
@@ -26,6 +32,7 @@
 
     });
 
+    // Tag edit
     $(document).on('click','a#tag_edit', function(e){
       e.preventDefault();
 
@@ -40,6 +47,14 @@
         }
       });
 
+    });
+
+    // Featured Image change
+    $(document).on('change','#fimage', function(event){
+        event.preventDefault();
+
+        let post_image_url = URL.createObjectURL(event.target.files[0]);
+        $('img#post_fimage_load').attr('src', post_image_url);
 
     });
 

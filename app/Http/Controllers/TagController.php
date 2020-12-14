@@ -105,7 +105,9 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $data = Tag::find($id);
+      $data -> delete();
+      return redirect() -> route('tag.index') -> with('success', 'Tag Deleted successfully !! ');
     }
 
     public function unpublishedTag($id){
