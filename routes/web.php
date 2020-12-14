@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// Category Routes
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('post-category', 'App\Http\Controllers\CategoryController');
@@ -29,3 +31,14 @@ Route::post('post-category-update', 'App\Http\Controllers\CategoryController@upd
 
 Route::get('post-category-unpublished/{id}', 'App\Http\Controllers\CategoryController@unpublishedCategory') -> name('category-unpublished');
 Route::get('post-category-published/{id}', 'App\Http\Controllers\CategoryController@publishedCategory') -> name('category-published');
+
+// Tag Routes
+Route::resource('tag', 'App\Http\Controllers\TagController');
+
+Route::get('tag-edit/{id}', 'App\Http\Controllers\TagController@edit');
+
+Route::post('tag-update', 'App\Http\Controllers\TagController@update') -> name('tag.update');
+
+Route::get('tag-unpublished/{id}', 'App\Http\Controllers\TagController@unpublishedTag') -> name('tag-unpublished');
+
+Route::get('tag-published/{id}', 'App\Http\Controllers\TagController@publishedTag') -> name('tag-published');

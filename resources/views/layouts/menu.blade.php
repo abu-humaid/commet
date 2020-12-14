@@ -15,7 +15,8 @@
           <ul style="display: none;">
             <li><a href="">All Posts</a></li>
             <li><a href="{{ route('post-category.index') }}">Category</a></li>
-            <li><a href="invoice-report.html">Tags</a></li>
+            <li><a href="{{ route('tag.index') }}">Tags</a></li>
+            
 
           </ul>
         </li>

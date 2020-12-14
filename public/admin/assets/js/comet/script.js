@@ -26,6 +26,23 @@
 
     });
 
+    $(document).on('click','a#tag_edit', function(e){
+      e.preventDefault();
+
+      let id = $(this).attr('edit_id');
+
+      $.ajax({
+        url: 'tag-edit/' + id,
+        dataType: 'json',
+        success: function(data){
+            $('#tag_modal_update form input[name="name"]').val(data.name);
+            $('#tag_modal_update form input[name="id"]').val(data.id);
+        }
+      });
+
+
+    });
+
 
 
   });
