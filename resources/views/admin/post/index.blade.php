@@ -98,6 +98,16 @@
                 <input class="form-control" type="text" name="title" placeholder="Title">
               </div>
               <div class="form-group">
+                <label for="">Categories</label><br>
+
+                @foreach ($categories as $category)
+                  <input name="category[]" type="checkbox" id="cn" > <label class="mr-1" for="cn">{{ $category -> name }}</label>
+                @endforeach
+
+
+
+              </div>
+              <div class="form-group">
                 <label class="display-4"for="fimage"><i class="fa fa-camera " aria-hidden="true"></i></label>
                 <input class="d-none" type="file" name="fimg" id="fimage" >
                 <img class="mw-100 d-block" id="post_fimage_load" src="" alt="">
