@@ -46,8 +46,20 @@
                     @foreach ($all_data as $data)
                       <tr>
                         <td>{{ $loop -> index + 1 }}</td>
-                        <td>{{ $data -> name }}</td>
-                        <td>{{ $data -> slug }}</td>
+                        <td>{{ $data -> title }}</td>
+                        <td>
+                          @foreach ($data -> categories as $category)
+                              {{ $category -> name }} |
+                          @endforeach
+                        </td>
+                        <td>{{ $data -> tag }}</td>
+                        <td>
+                          @if (!empty($data -> featured_image))
+                            <img style="width:60px; height:60px;" src="{{ URL::to('/')}}/media/posts/{{ $data -> featured_image }} " alt="">
+                          @endif
+
+
+                        </td>
                         <td>
                           @if ($data -> status == 'Published')
                             <span class="badge badge-success">Published</span>
@@ -92,7 +104,7 @@
             <button class="close" data-dismiss='modal'>&times;</button>
           </div>
           <div class="modal-body">
-            <form   action="{{ route('post-category.store') }}" method="post">
+            <form   action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
               @csrf
               <div class="form-group">
                 <input class="form-control" type="text" name="title" placeholder="Title">
@@ -101,7 +113,7 @@
                 <label for="">Categories</label><br>
 
                 @foreach ($categories as $category)
-                  <input name="category[]" type="checkbox" id="cn" > <label class="mr-1" for="cn">{{ $category -> name }}</label>
+                  <input name="category[]" type="checkbox" id="cn" value="{{ $category -> id }}"> <label class="mr-1" for="cn">{{ $category -> name }}</label>
                 @endforeach
 
 
@@ -113,7 +125,7 @@
                 <img class="mw-100 d-block" id="post_fimage_load" src="" alt="">
               </div>
               <div class="form-group">
-                <textarea id="post_editor"></textarea>
+                <textarea id="post_editor" name="content"></textarea>
               </div>
               <div class="form-group">
                 <input class="btn btn-block btn-primary" type="submit" value="Add">

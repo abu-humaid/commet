@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -38,7 +40,32 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $this -> validate($request, [
+        'title' => 'required',
+        'content' => 'required'
+      ]);
+
+      if ($request -> hasFile('fimg')) {
+        $img = $request -> file('fimg');
+        $file_name = md5(time() .rand()).'.'. $img -> getClientOriginalExtension();
+        $img -> move(public_path('media/posts'), $file_name);
+      } else {
+        $file_name = '';
+      }
+
+
+      $post_user = Post::create([
+        'title' => $request -> title,
+        'slug' => Str::slug($request -> title),
+        'user_id' => Auth::user() -> id,
+        'content' => $request -> content,
+        'featured_image' => $file_name
+      ]);
+
+      $post_user -> categories() -> attach( $request -> category );
+
+      return redirect() -> route('post.index') -> with('success', 'Post Added successful !! ');
+
     }
 
     /**
