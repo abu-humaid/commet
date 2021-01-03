@@ -10,7 +10,7 @@
       <div class="page-header">
         <div class="row">
           <div class="col-sm-12">
-            <h3 class="page-title">Welcome To {!! Auth::user() -> name !!}!</h3>
+            <h3 class="page-title">Welcome To Admin!</h3>
             <ul class="breadcrumb">
               <li class="breadcrumb-item active">Dashboard</li>
             </ul>
@@ -20,7 +20,7 @@
       <!-- /Page Header -->
 
     <div class="row">
-      <div class="col-lg-10">
+      <div class="col-lg-12">
         @include('validate')
         <a class="btn btn-sm btn-primary" data-toggle="modal" href="#category_modal">Add New Category</a>
           <div class="card">
@@ -29,7 +29,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-striped mb-0">
+                <table class="table data-table table-striped mb-0">
                   <thead>
                     <tr>
                       <th>SL</th>

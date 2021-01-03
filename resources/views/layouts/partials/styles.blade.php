@@ -11,3 +11,6 @@
 
 <!-- Main CSS -->
 <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css')}}">
+
+<!-- Datatables  CSS -->
+<link rel="stylesheet" href="{{ asset('//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css')}}">

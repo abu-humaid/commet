@@ -16,3 +16,6 @@
 <!-- Custom JS -->
 <script  src="{{ asset('admin/assets/js/script.js')}}"></script>
 <script  src="{{ asset('admin/assets/js/comet/script.js')}}"></script>
+
+{{-- Datatable scripts  --}}
+<script  src="{{ asset('//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js')}}"></script>

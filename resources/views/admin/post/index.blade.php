@@ -10,7 +10,7 @@
       <div class="page-header">
         <div class="row">
           <div class="col-sm-12">
-            <h3 class="page-title">Welcome To {!! Auth::user() -> name !!}!</h3>
+            <h3 class="page-title">Welcome To Admin!</h3>
             <ul class="breadcrumb">
               <li class="breadcrumb-item active">Dashboard</li>
             </ul>
@@ -19,82 +19,86 @@
       </div>
       <!-- /Page Header -->
 
-    <div class="row">
-      <div class="col-lg-10">
-        @include('validate')
-        <a class="btn btn-sm btn-primary" data-toggle="modal" href="#post_modal">Add New Post</a>
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">All Posts</h4>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-striped mb-0">
-                  <thead>
-                    <tr>
-                      <th>SL</th>
-                      <th>Post Title</th>
-                      <th>Categories</th>
-                      <th>Tags </th>
-                      <th>Featured Image</th>
-                      <th>Status</th>
-                      <th>Time</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($all_data as $data)
-                      <tr>
-                        <td>{{ $loop -> index + 1 }}</td>
-                        <td>{{ $data -> title }}</td>
-                        <td>
-                          @foreach ($data -> categories as $category)
-                              {{ $category -> name }} |
-                          @endforeach
-                        </td>
-                        <td>{{ $data -> tag }}</td>
-                        <td>
-                          @if (!empty($data -> featured_image))
-                            <img style="width:60px; height:60px;" src="{{ URL::to('/')}}/media/posts/{{ $data -> featured_image }} " alt="">
-                          @endif
+<div class="row">
+  <div class="col-lg-12">
+    @include('validate')
+    <a class="btn btn-sm btn-primary" data-toggle="modal" href="#post_modal">Add New Post</a>
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">All Posts</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table data-table table-striped mb-0">
+              <thead>
+                <tr>
+                  <th>SL</th>
+                  <th>Post Title</th>
+                  <th>Slug</th>
+                  <th>Content</th>
+                  <th>Categories</th>
+                  <th>Image</th>
+                  <th>Status</th>
+                  <th>Time</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($all_data as $data)
+                  <tr>
+                    <td>{{ $loop -> index + 1 }}</td>
+                    <td>{{ $data -> title }}</td>
+                    <td>{{ $data -> slug }}</td>
+                    <td>{!! $data -> content !!}</td>
+                    <td>
+                      @foreach ($data -> categories as $category)
+                          {{ $category -> name }} |
+                      @endforeach
+                    </td>
+
+                    <td>
+                      @if (!empty($data -> featured_image))
+                        <img style="width:60px; height:60px;" src="{{ URL::to('/')}}/media/posts/{{ $data -> featured_image }} " alt="">
+                      @endif
 
 
-                        </td>
-                        <td>
-                          @if ($data -> status == 'Published')
-                            <span class="badge badge-success">Published</span>
-                          @else
-                            <span class="badge badge-danger">Unpublished</span>
-                          @endif
-                        </td>
-                        <td>
-                          @if ($data -> status == 'Published')
-                            <a class="btn btn-sm btn-danger" href="{{ route('category-unpublished', $data -> id) }}"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                    </td>
+                    <td>
+                      @if ($data -> status == 'Published')
+                        <span class="badge badge-success">Published</span>
+                      @else
+                        <span class="badge badge-danger">Unpublished</span>
+                      @endif
+                    </td>
+                    <td>{{ $data -> created_at -> diffForHumans() }}</td>
+                    <td>
+                      @if ($data -> status == 'Published')
+                        <a class="btn btn-sm btn-danger" href="{{ route('post-unpublished', $data -> id) }}"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
 
-                          @else
-                            <a class="btn btn-sm btn-success" href="{{ route('category-published', $data -> id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                          @endif
+                      @else
+                        <a class="btn btn-sm btn-success" href="{{ route('post-published', $data -> id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                      @endif
 
-                          <a id="post_edit" class="btn btn-warning btn-sm" edit_id ="{{ $data -> id }}" data-toggle="modal" href="#post_modal_update">Edit</a>
+                      <a id="post_edit" class="btn btn-warning btn-sm" edit_id ="{{ $data -> id }}" data-toggle="modal" href="#post_modal_update">Edit</a>
 
-                          <form class="d-inline" action="{{ route('post-category.destroy', $data -> id) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-danger">Delete</button>
-                          </form>
+                      <form class="d-inline" action="{{ route('post.destroy', $data -> id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                      </form>
 
-                        </td>
-                      </tr>
-                    @endforeach
+                    </td>
+                  </tr>
+                @endforeach
 
 
-                  </tbody>
-                </table>
-              </div>
-            </div>
+              </tbody>
+            </table>
           </div>
         </div>
+      </div>
     </div>
+</div>
 
     <div id="post_modal" class="modal  fade">
       <div class="modal-dialog modal-dialog-centered modal-xl">

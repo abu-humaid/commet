@@ -1,6 +1,9 @@
 (function($){
   $(document).ready(function(){
 
+    //Datatable
+    $('.data-table').DataTable();
+
     // CK Editor
     CKEDITOR.replace('post_editor');
 
@@ -13,7 +16,7 @@
 
     });
 
-    // Category Edit 
+    // Category Edit
 
     $(document).on('click','a#category_edit', function(e){
       e.preventDefault();

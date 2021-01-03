@@ -110,6 +110,25 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $data = Post::find($id);
+      $data -> delete();
+      return redirect() -> route('post.index') -> with('success', 'Post Deleted successfully !! ');
+    }
+
+    public function unpublishedPost($id){
+
+      $data = Post::find($id);
+      $data -> status = 'Unpublished';
+      $data -> update();
+
+      return redirect() -> route('post.index') -> with('success', 'Post Unpublished successfully !! ');
+    }
+    public function publishedPost($id){
+
+      $data = Post::find($id);
+      $data -> status = 'Published';
+      $data -> update();
+
+      return redirect() -> route('post.index') -> with('success', 'Post Published successfully !! ');
     }
 }
