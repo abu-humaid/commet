@@ -35,7 +35,6 @@
                   <th>SL</th>
                   <th>Post Title</th>
                   <th>Slug</th>
-                  <th>Content</th>
                   <th>Categories</th>
                   <th>Image</th>
                   <th>Status</th>
@@ -49,7 +48,6 @@
                     <td>{{ $loop -> index + 1 }}</td>
                     <td>{{ $data -> title }}</td>
                     <td>{{ $data -> slug }}</td>
-                    <td>{!! $data -> content !!}</td>
                     <td>
                       @foreach ($data -> categories as $category)
                           {{ $category -> name }} |
@@ -79,7 +77,7 @@
                         <a class="btn btn-sm btn-success" href="{{ route('post-published', $data -> id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                       @endif
 
-                      <a id="post_edit" class="btn btn-warning btn-sm" edit_id ="{{ $data -> id }}" data-toggle="modal" href="#post_modal_update">Edit</a>
+                      <a id="post_edit" class="btn btn-warning btn-sm" edit_id ="{{ $data -> id }}" data-toggle="modal" href="#">Edit</a>
 
                       <form class="d-inline" action="{{ route('post.destroy', $data -> id) }}" method="post">
                         @csrf
@@ -140,19 +138,34 @@
       </div>
     </div>
 
-    <div id="post_modal_update" class="modal fade">
-      <div class="modal-dialog modal-dialog-centered">
+    <div id="post_edit_modal" class="modal  fade">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Update Category</h4>
+            <h4 class="modal-title">Post Edit</h4>
             <button class="close" data-dismiss='modal'>&times;</button>
           </div>
           <div class="modal-body">
-            <form   action="{{ route('category.update') }}" method="post">
+            <form   action="{{ route('post.update.ajax') }}" method="post" enctype="multipart/form-data">
               @csrf
+              @method('PATCH')
               <div class="form-group">
-                <input class="form-control" type="text" name="name" placeholder="Name">
-                <input class="form-control" type="hidden" name="id" placeholder="Name">
+                <input class="form-control" type="text" name="title" placeholder="Title">
+                <input class="form-control" type="hidden" name="id" >
+              </div>
+              <div class="form-group">
+                <label for="">Categories</label><br>
+
+                <div class="cl"></div>
+
+              </div>
+              <div class="form-group">
+                <label class="display-4"for="fimage_edit"><i class="fa fa-camera " aria-hidden="true"></i></label>
+                <input class="d-none" type="file" name="fimg" id="fimage_edit" >
+                <img class="mw-100 d-block" id="post_edit_fimage_load" src="" alt="">
+              </div>
+              <div class="form-group">
+                <textarea id="" class="form-control" name="content" rows="10"></textarea>
               </div>
               <div class="form-group">
                 <input class="btn btn-block btn-primary" type="submit" value="Update">

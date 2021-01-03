@@ -87,7 +87,39 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Post::find($id);
+        $cat_all = Category::all();
+
+         $post_cat = $data -> categories;
+
+         $checked_id = [];
+         foreach ($post_cat as $check_cat) {
+              array_push($checked_id, $check_cat -> id );
+         }
+
+         $cat_list ='';
+         foreach ($cat_all as $cat) {
+
+            if (in_array($cat -> id, $checked_id) ) {
+              $checked = 'checked';
+            } else {
+              $checked = '';
+            }
+
+
+           $cat_list .= '
+           <input '.$checked.' name="category[]" type="checkbox" id="cn" value="'.$cat -> id.'">
+           <label class="mr-1" for="cn">'.$cat -> name.'</label>
+           ';
+         }
+
+        return [
+          'id' => $data -> id,
+          'title' => $data -> title,
+          'image' => $data -> featured_image,
+          'cat_list' => $cat_list,
+          'content' => $data -> content,
+        ];
     }
 
     /**
@@ -114,7 +146,7 @@ class PostController extends Controller
       $data -> delete();
       return redirect() -> route('post.index') -> with('success', 'Post Deleted successfully !! ');
     }
-
+    // Unpublished post
     public function unpublishedPost($id){
 
       $data = Post::find($id);
@@ -123,6 +155,7 @@ class PostController extends Controller
 
       return redirect() -> route('post.index') -> with('success', 'Post Unpublished successfully !! ');
     }
+    // Published post
     public function publishedPost($id){
 
       $data = Post::find($id);
@@ -131,4 +164,25 @@ class PostController extends Controller
 
       return redirect() -> route('post.index') -> with('success', 'Post Published successfully !! ');
     }
+
+    // Post update
+    public function updatePost(Request $request){
+        $post_id = $request -> id;
+
+        $post_data = Post::find($post_id);
+
+        $post_data -> title = $request -> title;
+        $post_data -> content = $request -> content;
+        $post_data -> update();
+
+        $post_data -> categories() -> detach();
+        $post_data -> categories() -> attach($request -> category);
+
+        return redirect() -> route('post.index') -> with('success', 'Post Updated successfully !! ');
+    }
+
+
+
+
+
 }
