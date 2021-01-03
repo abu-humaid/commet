@@ -12,12 +12,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Frontend routes
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.home');
+});
+Route::get('/blog', function () {
+    return view('frontend.blog');
+});
+Route::get('/blog-single', function () {
+    return view('frontend.blog-single');
 });
 
 Auth::routes();
+
 
 // Category Routes
 
