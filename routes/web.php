@@ -13,15 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //Frontend routes
-Route::get('/', function () {
-    return view('frontend.home');
-});
-Route::get('/blog', function () {
-    return view('frontend.blog');
-});
-Route::get('/blog-single', function () {
-    return view('frontend.blog-single');
-});
+Route::get('/', 'App\Http\Controllers\FrontEndController@homePage');
+Route::get('/blog', 'App\Http\Controllers\FrontEndController@blogPage');
+Route::get('/blog-single', 'App\Http\Controllers\FrontEndController@blogSingle');
 
 Auth::routes();
 
