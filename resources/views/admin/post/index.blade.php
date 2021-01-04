@@ -37,6 +37,7 @@
                   <th>Slug</th>
                   <th>Categories</th>
                   <th>Image</th>
+                  <th>Author</th>
                   <th>Status</th>
                   <th>Time</th>
                   <th>Action</th>
@@ -61,6 +62,7 @@
 
 
                     </td>
+                    <td>{{ $data -> author -> name }}</td>
                     <td>
                       @if ($data -> status == 'Published')
                         <span class="badge badge-success">Published</span>
