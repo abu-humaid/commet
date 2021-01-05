@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use App\Models\Post;
 
 class FrontEndController extends Controller
@@ -11,13 +11,17 @@ class FrontEndController extends Controller
       return view('frontend.home');
     }
 
+
     public function blogPage(){
       $all_post = Post::latest() -> get();
       return view('frontend.blog', compact('all_post'));
     }
 
-    public function blogSingle(){
-      return view('frontend.blog-single');
+    public function blogSingle($slug){
+
+      $single_post = Post::where('slug', $slug) -> first();
+
+      return view('frontend.blog-single', compact('single_post'));
     }
 
 }

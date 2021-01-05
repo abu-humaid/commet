@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 //Frontend routes
 Route::get('/', 'App\Http\Controllers\FrontEndController@homePage');
 Route::get('/blog', 'App\Http\Controllers\FrontEndController@blogPage');
-Route::get('/blog-single', 'App\Http\Controllers\FrontEndController@blogSingle');
+Route::get('/blog-single/{slug}', 'App\Http\Controllers\FrontEndController@blogSingle') -> name('blog.single');
 
 Auth::routes();
 
