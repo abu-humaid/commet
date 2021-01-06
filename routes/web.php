@@ -54,3 +54,8 @@ Route::patch('post-update', 'App\Http\Controllers\PostController@updatePost') ->
 Route::get('post-unpublished/{id}', 'App\Http\Controllers\PostController@unpublishedPost') -> name('post-unpublished');
 
 Route::get('post-published/{id}', 'App\Http\Controllers\PostController@publishedPost') -> name('post-published');
+
+
+// Settings routes
+Route::get('setting-logo','App\Http\Controllers\settingController@settingIndex') -> name('logo.setting');
+Route::put('logo-update','App\Http\Controllers\settingController@updateLogo') -> name('logo.update');

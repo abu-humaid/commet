@@ -21,7 +21,11 @@
           </ul>
         </li>
         <li>
-          <a href="settings.html"><i class="fe fe-vector"></i> <span>Settings</span></a>
+          <a href="#"><i class="fe fe-vector"></i> <span>Settings</span></a>
+          <ul style="display: none;">
+            <li><a href="{{ route('logo.setting')}}">Logo</a></li>
+
+          </ul>
         </li>
 
 
