@@ -24,8 +24,6 @@ class settingController extends Controller
       $logo_data = json_decode($logo_json);
       $old_logo_lt_name = $logo_data -> logo_light;
       $old_logo_dk_name = $logo_data -> logo_dark;
-      $old_logo_lt_size = $logo_data -> logo_light_size;
-      $old_logo_dk_size = $logo_data -> logo_dark_size;
 
       //Logo light
       $logo_light =  $request -> file('logo_light');
@@ -49,28 +47,15 @@ class settingController extends Controller
         $logo_dk_name = $old_logo_dk_name;
       }
 
-      // Logo size validation
-      $logo_lt_size = '';
-      if (isset($request -> logo_light_size)) {
-        $logo_lt_size = $request -> logo_light_size;
-      } else {
-        $logo_lt_size =$old_logo_lt_size;
-      }
-      $logo_dk_size = '';
-      if (isset($request -> logo_dark_size)) {
-        $logo_dk_size = $request -> logo_dark_size;
-      } else {
-        $logo_dk_size =$old_logo_dk_size;
-      }
 
 
       //Data array
       $all_logo_data = [
 
         'logo_light' => $logo_lt_name,
-        'logo_light_size' => $logo_lt_size,
+        'logo_light_size' => $request -> logo_light_size,
         'logo_dark' => $logo_dk_name,
-        'logo_dark_size' => $logo_dk_size,
+        'logo_dark_size' => $request -> logo_dark_size,
 
       ];
 
@@ -81,6 +66,50 @@ class settingController extends Controller
       $settings -> update();
 
       return redirect() -> route('logo.setting') -> with('success', 'Logo updated successful !! ');
+
+    }
+
+    // Social index
+    public function socialIndex(){
+      $settings = Setting::find(1);
+      return view('admin.settings.social.index', compact('settings'));
+    }
+
+    //Social data
+    public function updateSocial(Request $request){
+
+      $social_data = [
+        'fb' => $request -> fb,
+        'tr' => $request -> tr,
+        'in' => $request -> in,
+        'ins' => $request -> ins,
+        'drbl' => $request -> drbl,
+      ];
+
+     $social_json  = json_encode($social_data);
+
+     $settings = Setting::find(1);
+     $settings -> social = $social_json;
+     $settings -> update();
+
+       return redirect() -> route('social.setting') -> with('success', 'Logo updated successful !! ');
+
+    }
+
+    //Copyright show
+    public function copyrightIndex(){
+      $settings = Setting::find(1);
+      return view('admin.settings.copyright.index', compact('settings'));
+    }
+
+    //Copyright data
+    public function updateCopyright(Request $request){
+
+      $settings = Setting::find(1);
+      $settings -> copyright = $request -> copyright;
+      $settings -> update();
+
+      return redirect() -> route('copyright.setting') -> with('success', 'Copyright updated successful !! ');
 
     }
 }

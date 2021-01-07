@@ -16,11 +16,18 @@
 <!-- Navigation Bar-->
 <header id="topnav">
   <div class="container">
+
+    @php
+
+      $settings_data = App\Models\Setting::find(1);
+      $logo_json = $settings_data -> logo;
+      $logo = json_decode($logo_json);
+    @endphp
     <!-- Logo container-->
     <div class="logo">
       <a href="index-2.html">
-        <img src="frontend/images/logo_light.png" alt="" class="logo-light">
-        <img src="frontend/images/logo_dark.png" alt="" class="logo-dark">
+        <img src="{{ URL::to('/') }}/media/settings/logo/{{ $logo -> logo_light }}" alt="" class="logo-light">
+        <img src="{{ URL::to('/') }}/media/settings/logo/{{ $logo -> logo_dark }}" alt="" class="logo-dark">
       </a>
     </div>
     <!-- End Logo container-->

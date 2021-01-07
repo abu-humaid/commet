@@ -24,6 +24,8 @@
           <a href="#"><i class="fe fe-vector"></i> <span>Settings</span></a>
           <ul style="display: none;">
             <li><a href="{{ route('logo.setting')}}">Logo</a></li>
+            <li><a href="{{ route('social.setting')}}">Social</a></li>
+            <li><a href="{{ route('copyright.setting')}}">Copyright</a></li>
 
           </ul>
         </li>

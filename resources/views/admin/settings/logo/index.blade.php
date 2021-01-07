@@ -56,7 +56,7 @@
                     <div class="form-group row">
 											<label class="col-form-label col-md-2">logo Size</label>
 											<div class="col-md-10">
-												<input type="text" name="logo_light_size" class="form-control">
+												<input type="text" name="logo_light_size" value="{{ $logo_data -> logo_light_size }}" class="form-control">
 											</div>
 										</div>
 										<div class="form-group row">
@@ -78,7 +78,7 @@
                     <div class="form-group row">
 											<label class="col-form-label col-md-2">logo Size</label>
 											<div class="col-md-10">
-												<input type="text" name="logo_dark_size" class="form-control">
+												<input type="text" name="logo_dark_size" value="{{ $logo_data -> logo_dark_size }}" class="form-control">
 											</div>
 										</div>
                     <div class="form-group row">

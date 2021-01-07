@@ -59,3 +59,9 @@ Route::get('post-published/{id}', 'App\Http\Controllers\PostController@published
 // Settings routes
 Route::get('setting-logo','App\Http\Controllers\settingController@settingIndex') -> name('logo.setting');
 Route::put('logo-update','App\Http\Controllers\settingController@updateLogo') -> name('logo.update');
+
+Route::get('setting-social','App\Http\Controllers\settingController@socialIndex') -> name('social.setting');
+Route::put('social-update','App\Http\Controllers\settingController@updateSocial') -> name('social.update');
+
+Route::get('setting-copyright','App\Http\Controllers\settingController@copyrightIndex') -> name('copyright.setting');
+Route::put('copyright-update','App\Http\Controllers\settingController@updateCopyright') -> name('copyright.update');
