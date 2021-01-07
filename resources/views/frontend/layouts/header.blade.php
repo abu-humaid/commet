@@ -17,12 +17,6 @@
 <header id="topnav">
   <div class="container">
 
-    @php
-
-      $settings_data = App\Models\Setting::find(1);
-      $logo_json = $settings_data -> logo;
-      $logo = json_decode($logo_json);
-    @endphp
     <!-- Logo container-->
     <div class="logo">
       <a href="index-2.html">

@@ -6,7 +6,7 @@
         <li class="menu-title">
           <span>Main</span>
         </li>
-        <li class="active">
+        <li>
           <a href="{{ route('home') }}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
         </li>
 
@@ -21,7 +21,18 @@
           </ul>
         </li>
         <li>
-          <a href="#"><i class="fe fe-vector"></i> <span>Settings</span></a>
+          <a href="#"><i class="fe fe-home"></i> <span>Homepage</span> <span class="menu-arrow"></span></a>
+          <ul style="display: none;">
+            <li><a href="#">Slider</a></li>
+            <li><a href="#">We are</a></li>
+            <li><a href="#">Expertise</a></li>
+            <li><a href="#">Works</a></li>
+            <li><a href="{{ route('homepage.clients') }}">Clients</a></li>
+
+          </ul>
+        </li>
+        <li>
+          <a href="#"><i class="fe fe-vector"></i> <span>Settings</span> <span class="menu-arrow"></span></a>
           <ul style="display: none;">
             <li><a href="{{ route('logo.setting')}}">Logo</a></li>
             <li><a href="{{ route('social.setting')}}">Social</a></li>

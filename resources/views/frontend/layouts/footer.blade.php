@@ -86,7 +86,7 @@
       <div class="row">
         <div class="col-md-4">
           <div class="copy-text">
-            <p><i class="icon-heart red mr-15"></i>© 2015 Comet Agency.</p>
+            <p><i class="icon-heart red mr-15"></i>{{ $settings_data -> copyright }}</p>
           </div>
         </div>
         <div class="col-md-4">
@@ -109,19 +109,19 @@
           <div class="footer-social">
             <ul>
               <li>
-                <a target="_blank" href="#"><i class="ti-facebook"></i></a>
+                <a target="_blank" href="{{ $social -> fb }}"><i class="ti-facebook"></i></a>
               </li>
               <li>
-                <a target="_blank" href="#"><i class="ti-twitter-alt"></i></a>
+                <a target="_blank" href="{{ $social -> tr }}"><i class="ti-twitter-alt"></i></a>
               </li>
               <li>
-                <a target="_blank" href="#"><i class="ti-linkedin"></i></a>
+                <a target="_blank" href="{{ $social -> in }}"><i class="ti-linkedin"></i></a>
               </li>
               <li>
-                <a target="_blank" href="#"><i class="ti-instagram"></i></a>
+                <a target="_blank" href="{{ $social -> ins }}"><i class="ti-instagram"></i></a>
               </li>
               <li>
-                <a target="_blank" href="#"><i class="ti-dribbble"></i></a>
+                <a target="_blank" href="{{ $social -> drbl }}"><i class="ti-dribbble"></i></a>
               </li>
             </ul>
           </div>

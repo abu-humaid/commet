@@ -2,6 +2,10 @@
 
 @section('main-content')
   <!-- Home section-->
+  @php
+    $clients_json = $homepage -> clients;
+    $client_data = json_decode($clients_json);
+  @endphp
   <section id="home">
     <!-- Video background-->
     <div id="video-wrapper" data-fallback-bg="frontend/images/bg/5.jpg">
@@ -325,33 +329,34 @@
       <!-- end of portfolio grid-->
     </div>
   </section>
+  {{-- Our clients section  --}}
   <section>
     <div class="container">
       <div class="title center">
-        <h4 class="upper">Some of the best.</h4>
-        <h3>Our Clients<span class="red-dot"></span></h3>
+        <h4 class="upper">{{ $client_data -> sub_heading }}</h4>
+        <h3>{{ $client_data -> heading }}<span class="red-dot"></span></h3>
         <hr>
       </div>
       <div class="section-content">
         <div class="boxes clients">
           <div class="row">
             <div class="col-sm-4 col-xs-6 border-right border-bottom">
-              <img src="frontend/images/clients/1.png" alt="" data-animated="true" class="client-image">
+              <img src="{{ URL::to('/') }}/media/homepage/clients/{{ $client_data -> img_one }}" alt="" data-animated="true" class="client-image">
             </div>
             <div class="col-sm-4 col-xs-6 border-right border-bottom">
-              <img src="frontend/images/clients/2.png" alt="" data-animated="true" data-delay="500" class="client-image">
+              <img src="{{ URL::to('/') }}/media/homepage/clients/{{ $client_data -> img_two }}" alt="" data-animated="true" data-delay="500" class="client-image">
             </div>
             <div class="col-sm-4 col-xs-6 border-bottom">
-              <img src="frontend/images/clients/3.png" alt="" data-animated="true" data-delay="1000" class="client-image">
+              <img src="{{ URL::to('/') }}/media/homepage/clients/{{ $client_data -> img_three }}" alt="" data-animated="true" data-delay="1000" class="client-image">
             </div>
             <div class="col-sm-4 col-xs-6 border-right">
-              <img src="frontend/images/clients/4.png" alt="" data-animated="true" class="client-image">
+              <img src="{{ URL::to('/') }}/media/homepage/clients/{{ $client_data -> img_four }}" alt="" data-animated="true" class="client-image">
             </div>
             <div class="col-sm-4 col-xs-6 border-right">
-              <img src="frontend/images/clients/5.png" alt="" data-animated="true" data-delay="500" class="client-image">
+              <img src="{{ URL::to('/') }}/media/homepage/clients/{{ $client_data -> img_five }}" alt="" data-animated="true" data-delay="500" class="client-image">
             </div>
             <div class="col-sm-4 col-xs-6">
-              <img src="frontend/images/clients/6.png" alt="" data-animated="true" data-delay="1000" class="client-image">
+              <img src="{{ URL::to('/') }}/media/homepage/clients/{{ $client_data -> img_six }}" alt="" data-animated="true" data-delay="1000" class="client-image">
             </div>
           </div>
           <!-- end of row-->

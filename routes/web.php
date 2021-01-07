@@ -65,3 +65,7 @@ Route::put('social-update','App\Http\Controllers\settingController@updateSocial'
 
 Route::get('setting-copyright','App\Http\Controllers\settingController@copyrightIndex') -> name('copyright.setting');
 Route::put('copyright-update','App\Http\Controllers\settingController@updateCopyright') -> name('copyright.update');
+
+//Backend homepage routes
+Route::get('homepage-clients','App\Http\Controllers\HomeController@homeClients') -> name('homepage.clients');
+Route::put('clients-update','App\Http\Controllers\HomeController@updateClients') -> name('clients.update');
