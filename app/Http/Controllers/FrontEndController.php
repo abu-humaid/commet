@@ -43,7 +43,7 @@ class FrontEndController extends Controller
     //Search post
     public function postSearch(Request $request){
       $search_data = $request -> search;
-      $posts = Post::where('title','like','%'.$search_data.'%') -> get();
+      $posts = Post::where('title','like','%'.$search_data.'%') -> orWhere('content','like','%'.$search_data.'%') -> get();
       return view('frontend.search',compact('posts'));
     }
 
