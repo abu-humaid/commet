@@ -17,7 +17,7 @@
         @endphp
         @foreach ($categories as $cat)
           <li>
-            <a href="#">{{ $cat -> name }}</a>
+            <a href="{{ route('blog.search.category', $cat -> slug) }}">{{ $cat -> name }}</a>
           </li>
         @endforeach
 

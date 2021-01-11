@@ -19,6 +19,9 @@ Route::get('/blog-single/{slug}', 'App\Http\Controllers\FrontEndController@blogS
 
 Auth::routes();
 
+//Frontend blog search route
+Route::get('category/{slug}', 'App\Http\Controllers\FrontEndController@blogSearchByCategory') -> name('blog.search.category');
+
 
 // Category Routes
 

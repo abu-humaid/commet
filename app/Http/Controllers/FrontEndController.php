@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Homepage;
+use App\Models\Category;
 
 class FrontEndController extends Controller
 {
@@ -25,5 +26,23 @@ class FrontEndController extends Controller
 
       return view('frontend.blog-single', compact('single_post'));
     }
+
+    public function blogSearchByCategory($slug){
+
+    $cats =  Category::where('slug', $slug) -> first();
+
+    // foreach ($cats -> posts as $post) {
+    //   echo $post -> title;
+    // }
+
+      return view('frontend.search', compact('cats'));
+    }
+
+
+
+
+
+
+
 
 }
