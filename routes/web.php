@@ -21,6 +21,7 @@ Auth::routes();
 
 //Frontend blog search route
 Route::get('category/{slug}', 'App\Http\Controllers\FrontEndController@blogSearchByCategory') -> name('blog.search.category');
+Route::post('search', 'App\Http\Controllers\FrontEndController@postSearch') -> name('post.search');
 
 
 // Category Routes

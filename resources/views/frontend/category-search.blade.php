@@ -24,7 +24,7 @@
         <div class="col-md-8">
           <div class="blog-posts">
 
-            @foreach ($posts as $post)
+            @foreach ($cats -> posts as $post)
               <article class="post-single">
                 <div class="post-info">
                   <h2><a href="#">{{ $post -> title }}</a></h2>

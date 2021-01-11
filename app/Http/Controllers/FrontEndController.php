@@ -6,6 +6,9 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Homepage;
 use App\Models\Category;
+use Illuminate\Http\Request;
+
+
 
 class FrontEndController extends Controller
 {
@@ -20,6 +23,7 @@ class FrontEndController extends Controller
       return view('frontend.blog', compact('all_post'));
     }
 
+    //Show single post
     public function blogSingle($slug){
 
       $single_post = Post::where('slug', $slug) -> first();
@@ -27,15 +31,20 @@ class FrontEndController extends Controller
       return view('frontend.blog-single', compact('single_post'));
     }
 
+
+    //Search post by Category
     public function blogSearchByCategory($slug){
 
     $cats =  Category::where('slug', $slug) -> first();
 
-    // foreach ($cats -> posts as $post) {
-    //   echo $post -> title;
-    // }
+      return view('frontend.category-search', compact('cats'));
+    }
 
-      return view('frontend.search', compact('cats'));
+    //Search post
+    public function postSearch(Request $request){
+      $search_data = $request -> search;
+      $posts = Post::where('title','like','%'.$search_data.'%') -> get();
+      return view('frontend.search',compact('posts'));
     }
 
 
