@@ -127,7 +127,12 @@ class HomeController extends Controller
       $homepage -> clients = $client_json;
       $homepage -> update();
 
-      return redirect() -> route('homepage.clients') -> with('success', 'Clients data updated successful !! ');
+      return redirect() -> route('clients.index') -> with('success', 'Clients data updated successful !! ');
 
+    }
+
+    //Homepage slides index
+    public function indexSlider(){
+      return view('admin.homepage.slider.index');
     }
 }

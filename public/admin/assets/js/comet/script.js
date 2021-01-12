@@ -91,9 +91,56 @@
         });
     });
 
-    //Menu Active class
-    
+    //Slide scripts
+    $(document).on('click','#comet-slide-button', function(){
 
+      let rand = Math.floor(Math.random() * 10000 );
+
+      $('.comet-slider-container').append('<div id="slider-card-'+ rand +'" class="card">\n' +
+      '  <div data-toggle="collapse" data-target="#slide-'+ rand +'" class="card-header">\n' +
+'<h3>Slide-1 <button id="comet-slide-remove-btn" remove_id="'+ rand +'" class="close">&times;</button> </h3>\n' +
+      '  </div>\n' +
+      '  <div id="slide-'+ rand +'" class="collapse">\n' +
+      '    <div  class="card-body">\n' +
+      '      <div class="form-group">\n' +
+      '        <label for="">Sub-title</label>\n' +
+      '        <input type="text" class="form-control">\n' +
+      '      </div>\n' +
+      '      <div class="form-group">\n' +
+      '        <label for="">Title</label>\n' +
+      '        <input type="text" class="form-control">\n' +
+      '      </div>\n' +
+      '      <div class="form-group">\n' +
+      '        <label for="">Button 01 Title</label>\n' +
+      '        <input type="text" class="form-control">\n' +
+      '      </div>\n' +
+      '      <div class="form-group">\n' +
+      '        <label for="">Button 01 Link</label>\n' +
+      '        <input type="text" class="form-control">\n' +
+      '      </div>\n' +
+      '      <div class="form-group">\n' +
+      '        <label for="">Button 02 Title</label>\n' +
+      '        <input type="text" class="form-control">\n' +
+      '      </div>\n' +
+      '      <div class="form-group">\n' +
+      '        <label for="">Button 02 Link</label>\n' +
+      '        <input type="text" class="form-control">\n' +
+      '      </div>\n' +
+      '    </div>\n' +
+      '  </div>\n' +
+    '  </div>');
+
+    return false;
+    });
+
+    // Remove slider
+    $(document).on('click','#comet-slide-remove-btn', function(){
+
+      let remove_code = $(this).attr('remove_id');
+      $('#slider-card-' + remove_code ).remove();
+
+      return false;
+    });
 
 
   });

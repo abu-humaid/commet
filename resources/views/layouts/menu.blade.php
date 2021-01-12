@@ -23,11 +23,11 @@
         <li>
           <a href="#"><i class="fe fe-home"></i> <span>Homepage</span> <span class="menu-arrow"></span></a>
           <ul style="display: none;">
-            <li><a href="#">Slider</a></li>
+            <li><a href="{{ route('sliders.index') }}">Slider</a></li>
             <li><a href="#">We are</a></li>
             <li><a href="#">Expertise</a></li>
             <li><a href="#">Works</a></li>
-            <li><a href="{{ route('homepage.clients') }}">Clients</a></li>
+            <li><a href="{{ route('clients.index') }}">Clients</a></li>
 
           </ul>
         </li>

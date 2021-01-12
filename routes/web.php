@@ -71,5 +71,12 @@ Route::get('setting-copyright','App\Http\Controllers\settingController@copyright
 Route::put('copyright-update','App\Http\Controllers\settingController@updateCopyright') -> name('copyright.update');
 
 //Backend homepage routes
-Route::get('homepage-clients','App\Http\Controllers\HomeController@homeClients') -> name('homepage.clients');
-Route::put('clients-update','App\Http\Controllers\HomeController@updateClients') -> name('clients.update');
+Route::group(['namespace' => 'App\Http\Controllers', 'prefix' => 'home'], function(){
+
+  //Clients routes
+  Route::get('clients','HomeController@homeClients') -> name('clients.index');
+  Route::put('update','HomeController@updateClients') -> name('clients.update');
+
+  //Slides routes
+  Route::get('sliders','HomeController@indexSlider') -> name('sliders.index');
+});
