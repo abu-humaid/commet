@@ -81,6 +81,7 @@
             success: function(data){
 
                 $('#post_edit_modal input[name="title"]').val(data.title);
+                $('#post_edit_modal input[name="old_fimg"]').val(data.image);
                 $('#post_edit_modal input[name="id"]').val(data.id);
                 $('#post_edit_modal textarea').text(data.content);
                 $('img#post_edit_fimage_load').attr('src','media/posts/' + data.image);

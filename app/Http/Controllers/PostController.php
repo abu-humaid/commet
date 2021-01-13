@@ -168,11 +168,22 @@ class PostController extends Controller
     // Post update
     public function updatePost(Request $request){
         $post_id = $request -> id;
-
+        $old_img_name = $request -> old_fimg;
         $post_data = Post::find($post_id);
+
+        $file_name = '';
+        if ($request -> hasFile('fimg')) {
+          $img = $request -> file('fimg');
+          $file_name = md5(time() .rand()).'.'. $img -> getClientOriginalExtension();
+          $img -> move(public_path('media/posts'), $file_name);
+          unlink('media/posts/'.$old_img_name);
+        } else {
+          $file_name = '';
+        }
 
         $post_data -> title = $request -> title;
         $post_data -> content = $request -> content;
+        $post_data -> featured_image = $file_name;
         $post_data -> update();
 
         $post_data -> categories() -> detach();
