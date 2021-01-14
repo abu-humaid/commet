@@ -133,6 +133,52 @@ class HomeController extends Controller
 
     //Homepage slides index
     public function indexSlider(){
+      
       return view('admin.homepage.slider.index');
     }
+
+    //Sliders store
+    public function storeSlider(Request $request){
+
+
+       $slider_number = count($request -> title);
+
+       $slider = [];
+       for ($i=0; $i < $slider_number; $i++) {
+
+         $slider_array = [
+           'sub_title' => $request -> sub_title[$i],
+           'slider_code' => $request -> slider_code[$i],
+           'title' => $request -> title[$i],
+           'btn_01_title' => $request -> btn_01_title[$i],
+           'btn_02_title' => $request -> btn_02_title[$i],
+           'btn_01_link' => $request -> btn_01_link[$i],
+           'btn_02_link' => $request -> btn_02_link[$i],
+         ];
+
+         array_push($slider, $slider_array);
+
+       }
+
+
+       $slider_array = [
+          'svideo' => $request -> svideo,
+          'slider' => $slider,
+
+       ];
+
+       $slider_json = json_encode($slider_array);
+
+       $homepage_data = Homepage::find(1);
+       $homepage_data -> slider = $slider_json;
+       $homepage_data -> update();
+
+       return redirect() -> route('sliders.index') -> with('success', 'Slider data updated successful !! ');
+
+    }
+
+
+
+
+
 }

@@ -5,6 +5,12 @@
   <!-- Page Wrapper -->
 
   {{-- Json data decode  --}}
+  @php
+    $homepage_data = App\Models\Homepage::find(1);
+    $slider_json = $homepage_data -> slider;
+    $slider_data = json_decode($slider_json);
+
+  @endphp
 
 <div class="page-wrapper">
 
@@ -31,58 +37,60 @@
 									<h4 class="card-title">All Slider</h4>
 								</div>
 								<div class="card-body">
-                  <form action="#" method="" >
-
+                  <form action="{{ route('slider.store') }}" method="post"  enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group row">
-											<label class="col-form-label col-md-2">Upload Video</label>
+											<label class="col-form-label col-md-2">Video Link</label>
 											<div class="col-md-10">
-                        <div class="custom-file">
-    													<input type="file" name="" class="custom-file-input" id="validatedCustomFile" >
-    													<label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-    													<div class="invalid-feedback">Example invalid custom file feedback</div>
-    										</div>
+												<input type="text" name="svideo" value="{{ $slider_data -> svideo }}" class="form-control">
 											</div>
 										</div>
-                    
+
                     <div class="form-group row">
 											<label class="col-form-label col-md-2">Sliders</label>
 											<div class="col-md-10">
 												<div class="comet-slider-container">
 
-                          {{-- <div class="card">
-                            <div data-toggle="collapse" data-target="#slide-1" class="card-header">
-                              <h3>Slider-1</h3>
-                            </div>
-                            <div id="slide-1" class="collapse">
-                              <div  class="card-body">
-                                <div class="form-group">
-                                  <label for="">Sub-title</label>
-                                  <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                  <label for="">Title</label>
-                                  <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                  <label for="">Button 01 Title</label>
-                                  <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                  <label for="">Button 01 Link</label>
-                                  <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                  <label for="">Button 02 Title</label>
-                                  <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                  <label for="">Button 02 Link</label>
-                                  <input type="text" class="form-control">
-                                </div>
+                          @foreach ($slider_data -> slider as $slide )
+                            <div id="slider-card-{{ $slide -> slider_code }}" class="card">
+                              <div data-toggle="collapse" data-target="#slide-{{ $slide -> slider_code }}" class="card-header">
+
+                                <h3>Slider-{{ $slide -> slider_code }} <button id="comet-slide-remove-btn" remove_id="{{ $slide -> slider_code }}" class="close">&times;</button></h3>
 
                               </div>
+                              <div id="slide-{{ $slide -> slider_code }}" class="collapse">
+                                <div  class="card-body">
+                                  <div class="form-group">
+                                    <label for="">Sub-title</label>
+                                    <input type="text" name="sub_title[]" value="{{ $slide -> sub_title }}" class="form-control">
+                                    <input type="hidden" name="slider_code[]" value="{{ $slide -> slider_code }}" >
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="">Title</label>
+                                    <input type="text" name="title[]" value="{{ $slide -> title }}" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="">Button 01 Title</label>
+                                    <input type="text" name="btn_01_title[]" value="{{ $slide -> btn_01_title }}" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="">Button 01 Link</label>
+                                    <input type="text" name="btn_01_link[]" value="{{ $slide -> btn_01_link }}"  class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="">Button 02 Title</label>
+                                    <input type="text" name="btn_02_title[]" value="{{ $slide -> btn_02_title }}"  class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="">Button 02 Link</label>
+                                    <input type="text" name="btn_02_link[]" value="{{ $slide -> btn_02_link }}"  class="form-control">
+                                  </div>
+
+                                </div>
+                              </div>
                             </div>
-                          </div> --}}
+                          @endforeach
+
 
                         </div>
 											</div>

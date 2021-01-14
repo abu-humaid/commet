@@ -99,33 +99,35 @@
 
       $('.comet-slider-container').append('<div id="slider-card-'+ rand +'" class="card">\n' +
       '  <div data-toggle="collapse" data-target="#slide-'+ rand +'" class="card-header">\n' +
-'<h3>Slide-1 <button id="comet-slide-remove-btn" remove_id="'+ rand +'" class="close">&times;</button> </h3>\n' +
+      '<h3>Slide-'+ rand +' <button id="comet-slide-remove-btn" remove_id="'+ rand +'" \n' +
+      'class="close">&times;</button> </h3>\n' +
       '  </div>\n' +
       '  <div id="slide-'+ rand +'" class="collapse">\n' +
       '    <div  class="card-body">\n' +
       '      <div class="form-group">\n' +
       '        <label for="">Sub-title</label>\n' +
-      '        <input type="text" class="form-control">\n' +
+      '        <input type="text" name="sub_title[]" class="form-control">\n' +
+      '        <input type="hidden" name="slider_code[]" value="'+ rand +'" >\n' +
       '      </div>\n' +
       '      <div class="form-group">\n' +
       '        <label for="">Title</label>\n' +
-      '        <input type="text" class="form-control">\n' +
+      '        <input type="text" name="title[]" class="form-control">\n' +
       '      </div>\n' +
       '      <div class="form-group">\n' +
       '        <label for="">Button 01 Title</label>\n' +
-      '        <input type="text" class="form-control">\n' +
+      '        <input type="text" name="btn_01_title[]" class="form-control">\n' +
       '      </div>\n' +
       '      <div class="form-group">\n' +
       '        <label for="">Button 01 Link</label>\n' +
-      '        <input type="text" class="form-control">\n' +
+      '        <input type="text" name="btn_01_link[]" class="form-control">\n' +
       '      </div>\n' +
       '      <div class="form-group">\n' +
       '        <label for="">Button 02 Title</label>\n' +
-      '        <input type="text" class="form-control">\n' +
+      '        <input type="text" name="btn_02_title[]" class="form-control">\n' +
       '      </div>\n' +
       '      <div class="form-group">\n' +
       '        <label for="">Button 02 Link</label>\n' +
-      '        <input type="text" class="form-control">\n' +
+      '        <input type="text" name="btn_02_link[]" class="form-control">\n' +
       '      </div>\n' +
       '    </div>\n' +
       '  </div>\n' +

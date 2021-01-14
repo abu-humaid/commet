@@ -79,4 +79,5 @@ Route::group(['namespace' => 'App\Http\Controllers', 'prefix' => 'home'], functi
 
   //Slides routes
   Route::get('sliders','HomeController@indexSlider') -> name('sliders.index');
+  Route::post('sliders-store','HomeController@storeSlider') -> name('slider.store');
 });

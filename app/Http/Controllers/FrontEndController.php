@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 class FrontEndController extends Controller
 {
     public function homePage(){
+
       $homepage = Homepage::find(1);
       return view('frontend.home', compact('homepage'));
     }
