@@ -80,4 +80,16 @@ Route::group(['namespace' => 'App\Http\Controllers', 'prefix' => 'home'], functi
   //Slides routes
   Route::get('sliders','HomeController@indexSlider') -> name('sliders.index');
   Route::post('sliders-store','HomeController@storeSlider') -> name('slider.store');
+
+  //Who we are routes
+  Route::get('we_are','HomeController@indexWe_are') -> name('we_are.index');
+  Route::post('we_are-update','HomeController@updateWe_are') -> name('we_are.update');
+
+  //Vision routes
+  Route::get('vision','HomeController@indexVision') -> name('vision.index');
+  Route::post('vision-update','HomeController@updateVision') -> name('vision.update');
+
+
+
+
 });

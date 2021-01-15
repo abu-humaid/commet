@@ -133,7 +133,7 @@ class HomeController extends Controller
 
     //Homepage slides index
     public function indexSlider(){
-      
+
       return view('admin.homepage.slider.index');
     }
 
@@ -177,6 +177,85 @@ class HomeController extends Controller
 
     }
 
+    //Who we are section
+    public function indexWe_are(){
+
+      $homepage = Homepage::find(1);
+      return view('admin.homepage.we_are.index', compact('homepage'));
+
+    }
+
+    //who we are update
+    public function updateWe_are(Request $request){
+
+      $we_are_array = [
+
+        'sub_heading' => $request -> sub_heading,
+        'heading' => $request -> heading,
+        'content' => $request -> content,
+
+      ];
+
+      $we_are_json = json_encode($we_are_array);
+
+      $homepage_data = Homepage::find(1);
+      $homepage_data -> who_we_are = $we_are_json;
+      $homepage_data -> update();
+
+      return redirect() -> route('we_are.index') -> with('success', 'Who we are data updated successful !! ');
+
+    }
+
+    //Homepage Vision section
+    public function indexVision(){
+
+      $homepage = Homepage::find(1);
+      return view('admin.homepage.vision.index', compact('homepage'));
+
+    }
+
+    //Homepage vision update
+    public function updateVision(Request $request){
+
+      $old_vision_img = $request -> old_vision_img;
+
+      $vision_image = $request -> file('vision_image');
+
+      $vision_img_name = '';
+      if ($request -> hasFile('vision_image')) {
+          $vision_img_name = md5(time().rand()).'.'.$vision_image -> getClientOriginalExtension();
+          $vision_image -> move(public_path('media/homepage/vision'), $vision_img_name);
+          unlink('media/homepage/vision/'.$old_vision_img);
+      } else {
+        $vision_img_name = $old_vision_img;
+      }
+
+
+      $vision_array = [
+
+          'vision_image' => $vision_img_name,
+          'sub_title' => $request -> sub_title,
+          'title' => $request -> title,
+          'heading_one' => $request -> heading_one,
+          'content_one' => $request -> content_one,
+          'heading_two' => $request -> heading_two,
+          'content_two' => $request -> content_two,
+          'heading_three' => $request -> heading_three,
+          'content_three' => $request -> content_three,
+          'heading_four' => $request -> heading_four,
+          'content_four' => $request -> content_four,
+
+      ];
+
+      $vision_json = json_encode($vision_array);
+
+      $homepage_data = Homepage::find(1);
+      $homepage_data -> vision = $vision_json;
+      $homepage_data -> update();
+
+      return redirect() -> route('vision.index') -> with('success', 'Vision data updated successful !! ');
+
+    }
 
 
 

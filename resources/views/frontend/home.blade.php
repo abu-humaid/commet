@@ -8,9 +8,16 @@
     $client_data = json_decode($clients_json);
 
     //Slider section data
-
     $slider_json = $homepage -> slider;
     $slider_data = json_decode($slider_json);
+
+    //Who we are section data
+    $we_are_json = $homepage -> who_we_are;
+    $we_are_data = json_decode($we_are_json);
+
+    //Vision section data
+    $vision_json = $homepage -> vision;
+    $vision_data = json_decode($vision_json);
 
   @endphp
   <section id="home">
@@ -48,14 +55,14 @@
   <section id="about">
     <div class="container">
       <div class="title center">
-        <h4 class="upper">We are driven by creative.</h4>
-        <h2>Who We Are<span class="red-dot"></span></h2>
+        <h4 class="upper">{{ $we_are_data -> sub_heading }}</h4>
+        <h2>{{ $we_are_data -> heading }}<span class="red-dot"></span></h2>
         <hr>
       </div>
       <div class="section-content">
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <p class="lead-text serif text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt sed ad possimus magnam maiores. Ipsam quas velit blanditiis debitis consequuntur mollitia assumenda nam obcaecati illo! Dolores deleniti animi.</p>
+            <p class="lead-text serif text-center">{{ $we_are_data -> content }}</p>
           </div>
         </div>
         <!-- end of row-->
@@ -130,7 +137,7 @@
       <div class="row">
         <div class="col-md-6 col-sm-4 img-side img-right">
           <div class="img-holder">
-            <img src="frontend/images/bg/10.jpg" alt="" class="bg-img">
+            <img src="{{ URL::to('/') }}/media/homepage/vision/{{ $vision_data -> vision_image }}" alt="" class="bg-img">
           </div>
         </div>
         <!-- end of side background image-->
@@ -141,36 +148,36 @@
       <div class="row">
         <div class="col-md-5 col-sm-8">
           <div class="title">
-            <h4 class="upper">Not just code.</h4>
-            <h3>The Vision<span class="red-dot"></span></h3>
+            <h4 class="upper">{{ $vision_data -> sub_title }}</h4>
+            <h3>{{ $vision_data -> title }}<span class="red-dot"></span></h3>
             <hr>
           </div>
           <div class="row">
             <div class="col-sm-6">
               <div class="text-box">
-                <h4 class="upper small-heading">Strategy</h4>
-                <p>Natus totam adipisci illum aut nihil consequuntur ut, ducimus alias iusto facili.</p>
+                <h4 class="upper small-heading">{{ $vision_data -> heading_one }}</h4>
+                <p>{{ $vision_data -> content_one }}</p>
               </div>
               <!-- end of text box-->
             </div>
             <div class="col-sm-6">
               <div class="text-box">
-                <h4 class="upper small-heading">Design</h4>
-                <p>Nisi, ut commodi dolor, quae doloremque earum alias accusantium sint.</p>
+                <h4 class="upper small-heading">{{ $vision_data -> heading_two }}</h4>
+                <p>{{ $vision_data -> content_two }}</p>
               </div>
               <!-- end of text box-->
             </div>
             <div class="col-sm-6">
               <div class="text-box">
-                <h4 class="upper small-heading">Skills</h4>
-                <p>Nesciunt est eaque, expedita cum minima reprehenderit? Harum vero dolorum.</p>
+                <h4 class="upper small-heading">{{ $vision_data -> heading_three }}</h4>
+                <p>{{ $vision_data -> content_three }}</p>
               </div>
               <!-- end of text box-->
             </div>
             <div class="col-sm-6">
               <div class="text-box">
-                <h4 class="upper small-heading">Power</h4>
-                <p>Fuga ipsum, repellendus? Architecto commodi magni non nihil et iusto.</p>
+                <h4 class="upper small-heading">{{ $vision_data -> heading_four }}</h4>
+                <p>{{ $vision_data -> content_four }}</p>
               </div>
               <!-- end of text box-->
             </div>

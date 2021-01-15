@@ -20,6 +20,7 @@ class CreateHomepagesTable extends Migration
             $table->longText('expertise') -> nullable();
             $table->longText('works') -> nullable();
             $table->longText('clients') -> nullable();
+            $table->longText('vision') -> nullable();
             $table->timestamps();
         });
     }
