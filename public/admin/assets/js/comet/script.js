@@ -145,6 +145,43 @@
       return false;
     });
 
+    //Testimonials slider scripts
+    $(document).on('click','#testimonials-slide-button', function(){
+
+      let rand = Math.floor(Math.random() * 10000 );
+
+      $('.testimonials-slider-container').append('<div id="testimonials-card-'+ rand +'" class="card">\n' +
+      '  <div data-toggle="collapse" data-target="#slide-'+ rand +'" class="card-header">\n' +
+      '<h3>Testimonial-'+ rand +' <button id="testimonials-slide-remove-btn" remove_id="'+ rand +'" \n' +
+      'class="close">&times;</button> </h3>\n' +
+      '  </div>\n' +
+      '  <div id="slide-'+ rand +'" class="collapse">\n' +
+      '    <div  class="card-body">\n' +
+      '      <div class="form-group">\n' +
+      '        <label for="">Quote</label>\n' +
+      '        <input type="text" name="quote[]" class="form-control">\n' +
+      '        <input type="hidden" name="testimonial_code[]" value="'+ rand +'" >\n' +
+      '      </div>\n' +
+      '      <div class="form-group">\n' +
+      '        <label for="">Quote Author</label>\n' +
+      '        <input type="text" name="quote_author[]" class="form-control">\n' +
+      '      </div>\n' +
+      '    </div>\n' +
+      '  </div>\n' +
+    '  </div>');
+
+    return false;
+    });
+
+    // Remove testimonials slider
+    $(document).on('click','#testimonials-slide-remove-btn', function(){
+
+      let remove_code = $(this).attr('remove_id');
+      $('#testimonials-card-' + remove_code ).remove();
+
+      return false;
+    });
+
 
   });
 })(jQuery)

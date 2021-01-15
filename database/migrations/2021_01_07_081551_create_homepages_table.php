@@ -21,6 +21,7 @@ class CreateHomepagesTable extends Migration
             $table->longText('works') -> nullable();
             $table->longText('clients') -> nullable();
             $table->longText('vision') -> nullable();
+            $table->longText('testimonials') -> nullable();
             $table->timestamps();
         });
     }

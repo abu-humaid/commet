@@ -26,6 +26,7 @@
             <li><a href="{{ route('sliders.index') }}">Slider</a></li>
             <li><a href="{{ route('we_are.index') }}">We are</a></li>
             <li><a href="{{ route('vision.index') }}">Vision</a></li>
+            <li><a href="{{ route('testimonials.index') }}">Testimonials</a></li>
             <li><a href="#">Expertise</a></li>
             <li><a href="#">Works</a></li>
             <li><a href="{{ route('clients.index') }}">Clients</a></li>

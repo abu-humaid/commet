@@ -89,6 +89,9 @@ Route::group(['namespace' => 'App\Http\Controllers', 'prefix' => 'home'], functi
   Route::get('vision','HomeController@indexVision') -> name('vision.index');
   Route::post('vision-update','HomeController@updateVision') -> name('vision.update');
 
+  //Slides routes
+  Route::get('testimonials','HomeController@indexTestimonials') -> name('testimonials.index');
+  Route::post('testimonials-store','HomeController@storeTestimonials') -> name('testimonials.store');
 
 
 

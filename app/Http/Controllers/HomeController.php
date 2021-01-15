@@ -257,6 +257,51 @@ class HomeController extends Controller
 
     }
 
+    //Homepage testimonials section
+    public function indexTestimonials(){
+
+      return view('admin.homepage.testimonial.index');
+    }
+
+    //Homepage testimonial section store
+    public function storeTestimonials(Request $request){
+
+      $testimonial_num = count($request -> quote_author);
+
+      $testimonials = [];
+      for ($i=0; $i < $testimonial_num; $i++) {
+
+        $testimonial_array = [
+
+          'quote' => $request -> quote[$i],
+          'quote_author' => $request -> quote_author[$i],
+          'testimonial_code' => $request -> testimonial_code[$i],
+
+        ];
+
+        array_push($testimonials, $testimonial_array);
+
+      }
+
+      $testimonial_array = [
+
+          'title' => $request -> title,
+          'testimonials' => $testimonials,
+
+      ];
+
+      $testimonial_json = json_encode($testimonial_array);
+
+      $homepage_data = Homepage::find(1);
+      $homepage_data -> testimonials = $testimonial_json;
+      $homepage_data -> update();
+
+      return redirect() -> route('testimonials.index') -> with('success', 'Testimonials data updated successful !! ');
+
+
+
+    }
+
 
 
 
