@@ -23,6 +23,10 @@
     $testimonial_json = $homepage -> testimonials;
     $testimonial_data = json_decode($testimonial_json);
 
+    //Expertise section data
+    $expertise_json = $homepage -> expertise;
+    $expertise_data = json_decode($expertise_json);
+
   @endphp
   <section id="home">
     <!-- Video background-->
@@ -80,12 +84,12 @@
       <div class="row">
         <div class="col-md-6 col-sm-4 img-side img-left mb-0">
           <div class="img-holder">
-            <img src="frontend/images/bg/33.jpg" alt="" class="bg-img">
+            <img src="{{ URL::to('/') }}/media/homepage/expertise/{{ $expertise_data -> bg_img }}" alt="" class="bg-img">
             <div class="centrize">
               <div class="v-center">
                 <div class="title txt-xs-center">
-                  <h4 class="upper">This is what we love to do.</h4>
-                  <h3>Expertise<span class="red-dot"></span></h3>
+                  <h4 class="upper">{{ $expertise_data -> sub_heading }}</h4>
+                  <h3>{{ $expertise_data -> heading }}<span class="red-dot"></span></h3>
                   <hr>
                 </div>
               </div>
@@ -98,33 +102,33 @@
             <div class="row">
               <div class="col-sm-6 border-bottom border-right">
                 <div class="service"><i class="icon-focus"></i><span class="back-icon"><i class="icon-focus"></i></span>
-                  <h4>Branding</h4>
+                  <h4>{{ $expertise_data -> title_one }}</h4>
                   <hr>
-                  <p class="alt-paragraph">Facilis doloribus illum quis, expedita mollitia voluptate non iure, perspiciatis repellat eveniet volup.</p>
+                  <p class="alt-paragraph">{{ $expertise_data -> content_one }}</p>
                 </div>
                 <!-- end of service-->
               </div>
               <div class="col-sm-6 border-bottom">
                 <div class="service"><i class="icon-layers"></i><span class="back-icon"><i class="icon-layers"></i></span>
-                  <h4>Interactive</h4>
+                  <h4>{{ $expertise_data -> title_two }}</h4>
                   <hr>
-                  <p class="alt-paragraph">Commodi totam esse quis alias, nihil voluptas repellat magni, id fuga perspiciatis, ut quia beatae, accus.</p>
+                  <p class="alt-paragraph">{{ $expertise_data -> content_two }}</p>
                 </div>
                 <!-- end of service-->
               </div>
               <div class="col-sm-6 border-bottom border-right">
                 <div class="service"><i class="icon-mobile"></i><span class="back-icon"><i class="icon-mobile"></i></span>
-                  <h4>Production</h4>
+                  <h4>{{ $expertise_data -> title_three }}</h4>
                   <hr>
-                  <p class="alt-paragraph">Doloribus qui asperiores nisi placeat volup eum, nemo est, praesentium fuga alias sit quis atque accus.</p>
+                  <p class="alt-paragraph">{{ $expertise_data -> content_three }}</p>
                 </div>
                 <!-- end of service-->
               </div>
               <div class="col-sm-6 border-bottom">
                 <div class="service"><i class="icon-globe"></i><span class="back-icon"><i class="icon-globe"></i></span>
-                  <h4>Editing</h4>
+                  <h4>{{ $expertise_data -> title_four }}</h4>
                   <hr>
-                  <p class="alt-paragraph">Aliquid repellat facilis quis. Sequi excepturi quis dolorem eligendi deleniti fuga rerum itaque.</p>
+                  <p class="alt-paragraph">{{ $expertise_data -> content_four }}</p>
                 </div>
                 <!-- end of service-->
               </div>

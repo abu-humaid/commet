@@ -298,9 +298,68 @@ class HomeController extends Controller
 
       return redirect() -> route('testimonials.index') -> with('success', 'Testimonials data updated successful !! ');
 
+    }
 
+    //Homepage Expertise index
+    public function indexExpertise(){
+
+      $homepage = Homepage::find(1);
+      return view('admin.homepage.expertise.index', compact('homepage'));
+    }
+
+    //Homepage expertise update
+    public function updateExpertise(Request $request){
+
+      $old_bg_img_name = $request -> old_bg_img;
+
+      //For background image
+      $bg_image = $request -> file('bg_img');
+
+      $bg_img_name = '';
+      if ($request -> hasFile('bg_img')) {
+          $bg_img_name = md5(time().rand()).'.'.$bg_image -> getClientOriginalExtension();
+          $bg_image -> move(public_path('media/homepage/expertise'), $bg_img_name);
+          unlink('media/homepage/expertise/'.$old_bg_img_name);
+      } else {
+        $bg_img_name = $old_bg_img_name;
+      }
+
+        $expertise_array = [
+
+            'bg_img' => $bg_img_name,
+            'sub_heading' => $request -> sub_heading,
+            'heading' => $request -> heading,
+
+            'title_one' => $request -> title_one,
+            'content_one' => $request -> content_one,
+
+            'title_two' => $request -> title_two,
+            'content_two' => $request -> content_two,
+
+            'title_three' => $request -> title_three,
+            'content_three' => $request -> content_three,
+
+            'title_four' => $request -> title_four,
+            'content_four' => $request -> content_four,
+
+        ];
+
+        $expertise_json = json_encode($expertise_array);
+
+        $homepage_data = Homepage::find(1);
+        $homepage_data -> expertise = $expertise_json;
+        $homepage_data -> update();
+
+        return redirect() -> route('expertise.index') -> with('success', 'Expertise data updated successful !! ');
 
     }
+
+
+
+
+
+
+
 
 
 

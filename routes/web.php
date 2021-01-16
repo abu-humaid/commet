@@ -93,6 +93,10 @@ Route::group(['namespace' => 'App\Http\Controllers', 'prefix' => 'home'], functi
   Route::get('testimonials','HomeController@indexTestimonials') -> name('testimonials.index');
   Route::post('testimonials-store','HomeController@storeTestimonials') -> name('testimonials.store');
 
+  //Slides routes
+  Route::get('expertise','HomeController@indexExpertise') -> name('expertise.index');
+  Route::put('expertise-update','HomeController@updateExpertise') -> name('expertise.update');
+
 
 
 });
